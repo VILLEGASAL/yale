@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Font CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/signupStyle.css">
+</head>
+<body>
+    <!-- Main container -->
+    <div class="container">
+
+        <!-- Brand section -->
+        <div class="brand-section">
+
+            <div class="brand-content">
+
+                <h2 class="app-name">
+
+                    <span class="ya">YA</span><span class="le">LE</span>
+
+                </h2>
+
+                <p class="slogan">Never Forget, Always Secure.</p>
+
+                <i class="fas fa-lock lock-icon"></i>
+
+            </div>
+
+        </div>
+
+        <!-- Signup form -->
+        <div class="form-section">
+
+            <h1>Sign Up</h1>
+
+            <form action="/" method="POST">
+
+                <div class="form-group">
+
+                    <label for="firstName">First Name</label>
+
+                    <input type="text" id="firstName" name="firstName" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="lastName">Last Name</label>
+
+                    <input type="text" id="lastName" name="lastName" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">Email</label>
+
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">Password</label>
+
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required>
+
+                        <i class="toggle-password fas fa-eye"></i>
+                    </div>
+
+                </div>
+
+                <button type="submit">Sign Up</button>
+
+            </form>
+
+            <div class="login-link">
+
+                Already have an account? <a href="/login">Login here</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/signup.js"></script>
+
+</body>
+</html>

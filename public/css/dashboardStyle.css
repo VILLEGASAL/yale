@@ -1,0 +1,846 @@
+* {
+  margin: 0;
+
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #5c5470;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+
+  background-color: #352f44;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #faf0e6;
+}
+
+.brand {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.app-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.ya {
+  color: #F0A04B;
+}
+.le {
+  color: #D2665A;
+}
+
+.nav-menu {
+  margin-top: 40px;
+
+  flex-grow: 1;
+}
+
+.nav-menu a {
+  display: flex;
+
+  align-items: center;
+  padding: 12px 15px;
+  color: #faf0e6;
+  text-decoration: none;
+  margin-bottom: 10px;
+
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.nav-menu a i {
+  margin-right: 10px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background-color: #5c5470;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex-grow: 1;
+
+  padding: 30px;
+  background-color: #faf0e6;
+  border-radius: 20px 0 0 20px;
+
+  margin-left: -20px;
+}
+
+.header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #352f44;
+  font-size: 2rem;
+}
+
+.add-password-btn {
+  background-color: #352f44;
+
+  color: #faf0e6;
+
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.add-password-btn:hover {
+  background-color: #5c5470;
+}
+
+/* Password Cards Styles */
+.password-cards {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.password-card {
+  background-color: white;
+
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-details h3 {
+  color: #352f44;
+
+  margin-bottom: 10px;
+}
+
+.password-field {
+  display: flex;
+
+  gap: 5px;
+  align-items: center;
+}
+
+.password-field input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #b9b4c7;
+
+  border-radius: 4px;
+}
+
+.password-field button {
+  background: none;
+  border: none;
+  color: #5c5470;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.password-field button:hover {
+  color: #352f44;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: #faf0e6;
+  padding: 25px;
+
+  border-radius: 15px;
+
+  width: 90%;
+  max-width: 400px;
+  margin: 20vh auto;
+
+  position: relative;
+}
+
+.modal-content h2 {
+  color: #352f44;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #352f44;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+
+  border: 2px solid #b9b4c7;
+  border-radius: 8px;
+}
+
+.password-input-group {
+  display: flex;
+
+  gap: 10px;
+}
+
+.password-input-group input {
+  flex: 1;
+}
+
+.generate-password {
+  white-space: nowrap;
+
+  background-color: #5c5470;
+  color: #faf0e6;
+  border: none;
+  padding: 8px 15px;
+
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-actions {
+  display: flex;
+
+  justify-content: center;
+  gap: 10px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  min-width: 100px;
+}
+
+.save-btn {
+  background-color: #352f44;
+
+  color: #faf0e6;
+}
+
+.cancel-btn {
+  background-color: #b9b4c7;
+
+  color: #352f44;
+}
+
+/* Logout Button */
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+
+  background-color: transparent;
+  color: #faf0e6;
+  border: 2px solid #faf0e6;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+  gap: 8px;
+
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #faf0e6;
+
+  color: #352f44;
+}
+
+/* Enhanced Responsive Design */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    padding: 15px;
+
+    height: auto;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+  }
+
+  .brand {
+    padding: 0;
+  }
+
+  .brand .app-name {
+    font-size: 1.4rem;
+    display: block;
+  }
+
+  .nav-menu {
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .nav-menu a {
+    padding: 8px 15px;
+  }
+
+  .nav-menu a i {
+    margin-right: 5px;
+  }
+
+  .nav-menu a span {
+    display: inline;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-top: 70px;
+    padding: 20px;
+
+    border-radius: 0;
+    min-height: calc(100vh - 70px);
+  }
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .password-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .password-card {
+    margin: 0;
+    padding: 15px;
+  }
+
+  .modal-content {
+    margin: 15vh auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    padding: 10px;
+  }
+
+  .brand .app-name {
+    font-size: 1.2rem;
+  }
+
+  .nav-menu {
+    gap: 10px;
+  }
+
+  .nav-menu a {
+    padding: 6px 10px;
+
+    font-size: 0.9rem;
+  }
+
+  .nav-menu a i {
+    font-size: 1rem;
+  }
+
+  .main-content {
+    margin-top: 60px;
+
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.3rem;
+
+    text-align: center;
+  }
+
+  .add-password-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .password-card {
+    padding: 12px;
+  }
+
+  .service-details h3 {
+    font-size: 1.1rem;
+  }
+
+  .password-field input {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+    margin: 10vh auto;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+/* Fix for very small screens */
+@media screen and (max-width: 360px) {
+  .brand .app-name {
+    font-size: 1rem;
+  }
+
+  .nav-menu a {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+
+  .nav-menu a i {
+    font-size: 0.9rem;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .header h1 {
+    font-size: 1.1rem;
+  }
+
+  .password-card {
+    padding: 10px;
+  }
+
+  .service-details h3 {
+    font-size: 1rem;
+  }
+
+  .username {
+    font-size: 0.8rem;
+  }
+}
+
+/* Password Generation Styles */
+.password-options {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 0.9rem;
+  color: #352f44;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.length-selector {
+  margin-top: 10px;
+}
+
+.length-selector label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.length-selector input[type="range"] {
+  width: 100%;
+}
+
+.generate-password:hover {
+  background-color: #352f44;
+}
+
+/* Add smooth scrolling to the modal content */
+.modal-content {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #5c5470 #faf0e6;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #faf0e6;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #5c5470;
+  border-radius: 4px;
+  border: 2px solid #faf0e6;
+}
+
+/* Verification Modal Styles */
+#verificationModal .modal-content {
+  background-color: #faf0e6;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  margin: 20vh auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition: transform 0.3s ease-out;
+}
+
+#verificationModal.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  
+  align-items: center;
+  justify-content: center;
+}
+
+#verificationModal h2 {
+  color: #352f44;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+
+  text-align: center;
+
+  font-weight: 600;
+}
+
+#verificationForm .form-group {
+  margin-bottom: 20px;
+}
+
+#verificationForm .form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #352f44;
+  font-weight: 500;
+}
+
+#verificationForm .form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #b9b4c7;
+
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+#verificationForm .form-group input:focus {
+  outline: none;
+  border-color: #352f44;
+}
+
+#verificationModal .form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+#verificationModal .submit-btn,
+#verificationModal .cancel-btn {
+
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+#verificationModal .submit-btn {
+  background-color: #352f44;
+  color: #faf0e6;
+}
+
+#verificationModal .submit-btn:hover {
+  background-color: #5c5470;
+}
+
+#verificationModal .cancel-btn {
+  background-color: #b9b4c7;
+  color: #352f44;
+}
+
+#verificationModal .cancel-btn:hover {
+  background-color: #a09bb0;
+}
+
+/* Responsive Styles for Verification Modal */
+@media screen and (max-width: 480px) {
+
+  #verificationModal .modal-content {
+
+    width: 95%;
+
+    margin: 10vh auto;
+
+    padding: 20px;
+  }
+
+  #verificationModal h2 {
+
+    font-size: 1.3rem;
+
+    margin-bottom: 20px;
+  }
+
+  #verificationModal .form-buttons {
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  #verificationModal .submit-btn,
+  #verificationModal .cancel-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* Animation for Modal */
+@keyframes modalFadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#verificationModal.modal[style*="flex"] .modal-content {
+
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Password Input Wrapper Styles */
+#verificationForm .password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#verificationForm .password-input-wrapper input {
+
+  padding-right: 40px; /* Space for the icon */
+}
+
+#verificationForm .toggle-visibility-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #352f44;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+#verificationForm .toggle-visibility-btn:hover {
+  color: #5c5470;
+}
+
+#verificationForm .toggle-visibility-btn:focus {
+  outline: none;
+}
+
+#verificationForm .password-input-wrapper input:focus + .toggle-visibility-btn {
+  color: #352f44;
+}
+
+.profile-info {
+  margin: 20px 0;
+}
+
+.info-group {
+  margin-bottom: 15px;
+}
+
+.info-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.info-group p {
+  font-size: 16px;
+  margin: 0;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+#profileModal .modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#profileModal .logout-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#profileModal .logout-btn:hover {
+  background-color: #c82333;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+}
+
+.delete-password {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.delete-password:hover {
+    color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .service-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .delete-password {
+        font-size: 0.8rem;
+    }
+
+    .delete-password span {
+        display: none;
+    }
+
+    .delete-password i {
+        font-size: 1rem;
+    }
+}

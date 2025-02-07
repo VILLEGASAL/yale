@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeepSafe Dashboard</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Font CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboardStyle.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="brand">
+                <h2 class="app-name">
+                    <span class="ya">YA</span><span class="le">LE</span>
+                </h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="active"><i class="fas fa-key"></i> Passwords</a>
+                <a href="#" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <div class="header">
+
+                <h1>
+                    WELCOME
+                    <%= locals.userName %>
+                </h1>
+
+                <button class="add-password-btn">
+                    <i class="fas fa-plus"></i> Add New Password
+                </button>
+
+            </div>
+
+            
+            <!-- Password Cards Container -->
+            <div class="password-cards">
+                <!-- Sample Password Card -->
+                <% if(locals.passwords) { %>
+
+                    <% passwords.forEach(password => { %>
+
+                        <div class="password-card">
+
+                            <div class="service-details">
+
+                                <div class="service-header">
+
+                                    <h3><%= password.service_name %></h3>
+
+                                    <form action="/home/delete-password/<%= password.id %>?_method=DELETE" method="POST" class="delete-form">
+
+                                        <button type="submit" class="delete-password">
+
+                                            <i class="fas fa-trash"></i>
+
+                                            <span>Delete</span>
+
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                                <div class="password-field">
+
+                                    <input type="password" value="***" readonly>
+                                        
+                                    <button class="toggle-password" value="<%= password.id %>">
+                                        View Password
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+                <% } %>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Password Modal -->
+    <div class="modal" id="addPasswordModal">
+
+        <div class="modal-content">
+
+            <h2>Add New Password</h2>
+
+            <form id="addPasswordForm" action="/home/add-password" method="POST">
+
+                <div class="form-group">
+
+                    <label for="serviceName">Service Name</label>
+
+                    <input type="text" id="serviceName" name="serviceName" required>
+
+                </div>
+                <div class="form-group">
+
+                    <label for="servicePassword">Password</label>
+
+                    <div class="password-input-group">
+
+                        <input type="password" id="servicePassword" name="servicePassword" required>
+
+                        <button type="button" class="generate-password" id="generatePasswordBtn">
+
+                            <i class="fas fa-dice"></i> Generate
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="submit" class="save-btn">Save</button>
+
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div class="modal" id="verificationModal">
+        <div class="modal-content">
+
+            <h2>Verify Your Password</h2>
+
+            <h4 class="password-not-match" style="display: none; text-align: center; color: red;">
+
+            </h4>
+
+            <form id="verificationForm">
+
+                <div class="form-group">
+                    <label for="userPassword">Enter Your Password</label>
+
+                    <div class="password-input-wrapper">
+
+                        <input type="password" id="userPassword" name="userPassword" required>
+                        <button type="submit" class="toggle-visibility-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Verify</button>
+                    <button type="button" class="cancel-btn" onclick="closeVerificationModal()">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Add the Profile Modal before the closing body tag -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <h2>Profile Information</h2>
+            
+            <div class="profile-info">
+                <div class="info-group">
+                    <label>Full Name</label>
+                    <p><%= locals.userFullName %></p>
+                </div>
+                <div class="info-group">
+                    <label>Email</label>
+                    <p><%= locals.userEmail %></p>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+                <button type="button" class="cancel-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
