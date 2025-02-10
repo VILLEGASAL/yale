@@ -100,9 +100,6 @@ export const verifyUser = async(req, res, next) => {
 
         const enteredPass = req.body.userPassword;
 
-        console.log(enteredPass);
-        
-
         if(await bcrypt.compare(enteredPass, userPassword.password)){
 
             res.status(200).send();

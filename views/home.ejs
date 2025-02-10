@@ -58,9 +58,11 @@
 
                                     <h3><%= password.service_name %></h3>
 
-                                    <form action="/home/delete-password/<%= password.id %>?_method=DELETE" method="POST" class="delete-form">
+                                    <form class="delete-form">
+                                        
+                                        <input type="hidden" name="id" value="<%= password.id %>">
 
-                                        <button type="submit" class="delete-password">
+                                        <button type="submit" class="delete-password toggle-password">
 
                                             <i class="fas fa-trash"></i>
 
@@ -73,7 +75,7 @@
 
                                 <div class="password-field">
 
-                                    <input type="password" value="***" readonly>
+                                    <input type="password" class="actual-password" value="***" readonly>
                                         
                                     <button class="toggle-password" value="<%= password.id %>">
                                         View Password
@@ -199,6 +201,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script type="module" src="/js/dashboard.js"></script>
 </body>
 </html>

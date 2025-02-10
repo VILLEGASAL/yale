@@ -1,8 +1,12 @@
+import { verifyUser } from "./verify-user.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     // Toggle password visibility
     document.querySelectorAll('.toggle-password').forEach(button => {
 
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+
+            e.preventDefault();
             
             const verificationModal = document.getElementById('verificationModal');
 
@@ -17,34 +21,34 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show verification modal
             verificationModal.style.display = 'flex';
 
+
             // Handle verification form submission
             verificationForm.onsubmit = async (e) => {
 
                 try {
+                    const userPasswordInput = document.getElementById('userPassword').value;
 
                     e.preventDefault();
 
-                    const userPasswordInput = document.getElementById('userPassword').value;
+                    if (button.classList.contains("delete-password")) {
 
-                    const result = await axios.post(`/verify-user`, new URLSearchParams({
+                        if (await verifyUser(userPasswordInput)) {
 
-                        userPassword: userPasswordInput
-                    }), {
+                            const id = button.previousElementSibling.value;
 
-                        heades: {
+                            await axios.post(`/home/delete-password/${id}?_method=DELETE`)
+                            
+                            verificationModal.style.display = 'none';
 
-                            'Content-Type': 'application/x-www-form-urlencoded'
+                            location.reload(false);  // Forces a fresh reload
+
                         }
-                    });
-                    
-
-                    if(result.status === 200){
+                
+                    }else if(await verifyUser(userPasswordInput)){
 
                         const response = await axios.get(`/home/decrypt-password/${passwordId}`);
 
-                        console.log(response.data);
-
-                        const passwordInput = passwordCard.querySelector('input');
+                        const passwordInput = passwordCard.querySelector('.actual-password');
                         const toggleButton = passwordCard.querySelector('.toggle-password');
                         const icon = toggleButton.querySelector('i');
 
@@ -68,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // Close the verification modal and reset the form
                         verificationModal.style.display = 'none';
+                        
                         verificationForm.reset();
                         
                     }

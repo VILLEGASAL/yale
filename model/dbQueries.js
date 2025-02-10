@@ -101,13 +101,8 @@ export class System{
         //Encrypt the plain text into hexadecimal value.
         let encrypted = cipher.update(password, 'utf8', 'hex');
         
-        console.log(encrypted);
-        
         //Finalizes the encryption process and concatenates any remaining encrypted data.
         encrypted += cipher.final('hex');
-
-        console.log(encrypted);
-        
       
         return { encryptedPassword: encrypted, iv: iv.toString('hex') };
     };
