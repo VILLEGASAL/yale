@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.toggle-password').forEach(button => {
 
         button.addEventListener('click', () => {
+            
             const verificationModal = document.getElementById('verificationModal');
 
             const verificationForm = document.getElementById('verificationForm');
@@ -100,12 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Toggle the passwor visibility in verification modal
+    const verifyForm = document.querySelector('#verificationForm');
+
     const toggleVisibilityBtn = document.querySelector('#verificationForm .toggle-visibility-btn');
 
     const passwordInput = document.querySelector('#verificationForm #userPassword');
 
     toggleVisibilityBtn.addEventListener('click', () => {
-        const icon = this.querySelector('i');
+
+        const icon = document.querySelector('i');
         
         if (passwordInput.type === 'password') {
 
